@@ -70,12 +70,13 @@ module.exports = {
       status = STATUS.FAILURE;
     }
 
-    ideRequest.stdout = data.stdout;
-    ideRequest.stderr = data.stderr;
-    ideRequest.compile_stderr = data.compile_stderr;
-    ideRequest.time_log = `${data.exec_time || '0.00'} seconds`;
-    ideRequest.status = status;
+    const output = {};
+    output.stdout = data.stdout;
+    output.stderr = data.stderr;
+    output.compile_stderr = data.compile_stderr;
+    output.time_log = `${data.exec_time || '0.00'} seconds`;
+    output.status = status;
 
-    return ideRequest.save();
+    return db.saveOutput(id, output);
   }
 };

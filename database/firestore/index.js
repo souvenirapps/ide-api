@@ -26,11 +26,19 @@ module.exports = {
       return false;
     }
 
-    return docRef.set({
-      stdout: output.stdout || '',
-      stderr: output.stderr || '',
-      status: STATUS.SUCCESS
-    });
+    await docRef.set(output);
+
+    const data = await doc.data();
+
+    return {
+      _id: id,
+      stdout: '',
+      stderr: '',
+      compile_stderr: '',
+      time_log: '',
+      status: STATUS.PENDING,
+      ...data
+    };
   },
 
   findRequestById: async id => {
@@ -41,6 +49,16 @@ module.exports = {
       return false;
     }
 
-    return doc.data();
+    const data = await doc.data();
+
+    return {
+      _id: id,
+      stdout: '',
+      stderr: '',
+      compile_stderr: '',
+      time_log: '',
+      status: STATUS.PENDING,
+      ...data
+    };
   }
 };

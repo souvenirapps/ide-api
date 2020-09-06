@@ -13,7 +13,7 @@ module.exports = {
 
       const requestId = await ide.saveRequest({ source, lang, stdin });
       const signedToken = hashing.generateSignedTokenFromId(requestId);
-      const callbackPath = `/status/${requestId}?signature=${signedToken}`;
+      const callbackPath = `/api/status/${requestId}?signature=${signedToken}`;
 
       return res.status(202).json({
         status: 'success',
@@ -53,7 +53,6 @@ module.exports = {
        */
       const data = JSON.parse(Buffer.from(encodedData, 'base64').toString());
       const job = data.job;
-      console.log(data);
       const payload = {
         id: job.id,
         stdout: data.stdout,
