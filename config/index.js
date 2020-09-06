@@ -22,7 +22,7 @@ module.exports = {
   },
 
   database: {
-    driver: 'mongo',
+    driver: 'firestore',
 
     config: {
       mongo: {
@@ -35,6 +35,11 @@ module.exports = {
         production: {
           MONGO_DB_DSN: process.env.MONGO_DB_DSN
         }
+      },
+      firestore: {
+        development: {},
+        staging: {},
+        production: {}
       }
       // Add more drivers here.
     }

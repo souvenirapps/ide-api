@@ -2,7 +2,7 @@
 
 const app = require('./app');
 
-const debug = require('debug')('ide-backend:server');
+const debug = require('debug')('ide-api:server');
 const http = require('http');
 
 const port = normalizePort(process.env.PORT || '3000');

@@ -3,7 +3,7 @@ version: "3.7"
 services:
   taskmaster:
     build: .
-    image: ifaisalalam/ide-backend
+    image: ide-api
     restart: on-failure
     ports:
     - "3000:3000"
