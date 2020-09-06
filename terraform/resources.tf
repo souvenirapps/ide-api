@@ -58,6 +58,8 @@ resource "google_cloud_run_service_iam_member" "member" {
 }
 
 resource "google_cloud_scheduler_job" "warm_ide_api" {
+  provider = google-beta
+
   name        = "warm-ide-api"
   description = "Ping IDE API Cloud Run app to prevent cold start."
   schedule    = "every 1 minutes"
@@ -65,10 +67,12 @@ resource "google_cloud_scheduler_job" "warm_ide_api" {
 
   http_target {
     http_method = "GET"
-    uri         = google_cloud_run_service.ide_api.status.url
+    uri         = google_cloud_run_service.ide_api.status[0].url
 
     oidc_token {
       service_account_email = var.cloud_scheduler_sa_email
     }
   }
+
+  depends_on = [google_cloud_run_service.ide_api]
 }
