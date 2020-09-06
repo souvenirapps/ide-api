@@ -15,5 +15,9 @@ module.exports = {
     } catch (e) {
       next(e);
     }
+  },
+
+  ping: async (req, res, next) => {
+    return res.status(200).send('Pong');
   }
 };
