@@ -26,8 +26,6 @@ terraform fmt -check
 
 terraform validate
 
-terraform taint google_cloud_run_service.ide_api 2> /dev/null
-
 terraform plan -refresh=true -out=tfplan
 
 terraform apply -auto-approve -lock=true tfplan

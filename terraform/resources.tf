@@ -49,3 +49,14 @@ resource "google_cloud_run_service" "ide_api" {
     }
   }
 }
+
+resource "google_cloud_run_service_iam_member" "member" {
+  provider = google-beta
+
+  location = google_cloud_run_service.ide_api.location
+  project  = google_cloud_run_service.ide_api.project
+  service  = google_cloud_run_service.ide_api.name
+
+  role   = "roles/run.invoker"
+  member = "allUsers"
+}
