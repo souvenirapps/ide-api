@@ -18,6 +18,10 @@ variable "iam_service_account_email" {
   description = "IAM service account that the app will use."
 }
 
+variable "cloud_scheduler_sa_email" {
+  description = "IAM service account used by Cloud Scheduler to keep Cloud Run warm."
+}
+
 variable "pubsub_oauth_aud_claim" {
   description = "Audience claim to check for in JWT received from Pub/Sub."
 }

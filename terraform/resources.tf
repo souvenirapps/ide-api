@@ -10,10 +10,6 @@ resource "google_cloud_run_service" "ide_api" {
   }
 
   template {
-    metadata {
-      name = "ide-api-app"
-    }
-
     spec {
       containers {
         image = "gcr.io/${var.project_id}/${var.app_docker_image_name}"
@@ -59,4 +55,20 @@ resource "google_cloud_run_service_iam_member" "member" {
 
   role   = "roles/run.invoker"
   member = "allUsers"
+}
+
+resource "google_cloud_scheduler_job" "warm_ide_api" {
+  name             = "warm-ide-api"
+  description      = "Ping IDE API Cloud Run app to prevent cold start."
+  schedule         = "every 1 minutes"
+  time_zone        = "Asia/Calcutta"
+
+  http_target {
+    http_method = "GET"
+    uri         = google_cloud_run_service.ide_api.status.url
+
+    oidc_token {
+      service_account_email = var.cloud_scheduler_sa_email
+    }
+  }
 }
