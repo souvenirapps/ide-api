@@ -3,7 +3,7 @@
 const db = require('./driver');
 const STATUS = require('../../constants/ide-request-constants');
 
-const collection = 'IDERequestsTest';
+const collection = 'IDERequests';
 
 /**
  * @type {{
