@@ -10,6 +10,10 @@ resource "google_cloud_run_service" "ide_api" {
   }
 
   template {
+    metadata {
+      name = "ide-api-app-${substr(sha1(timestamp()), 0, 7)}"
+    }
+
     spec {
       containers {
         image = "gcr.io/${var.project_id}/${var.app_docker_image_name}"
