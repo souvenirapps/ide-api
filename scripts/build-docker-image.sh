@@ -2,6 +2,8 @@
 
 cd "$(dirname "$0")" || exit
 
-docker image rm ifaisalalam/ide-api 2> /dev/null
+. ./export-env-vars.sh
 
-docker build -t ifaisalalam/ide-api ../
+docker image rm "$DOCKER_IMAGE_NAME" 2> /dev/null
+
+docker build -t "$DOCKER_IMAGE_NAME" ../

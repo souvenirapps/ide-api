@@ -1,59 +1,29 @@
 variable "project_id" {
-  default = "ctfhubio"
+  description = "GCP Project ID"
 }
 
 variable "region" {
-  default = "asia-south1"
+  default = "us-central1"
 }
 
 variable "zone" {
-  default = "asia-south1-b"
+  default = "us-central1-a"
 }
 
-variable "private_subnet_cidr" {
-  default = "10.12.11.0/24"
+variable "pubsub_topic_name" {
+  description = "Name of the Pub/Sub topic to which tasks will be published."
 }
 
-variable "min_replica" {
-  default = 1
+variable "iam_service_account_email" {
+  description = "IAM service account that the app will use."
 }
 
-variable "max_replica" {
-  default = 5
+variable "pubsub_oauth_aud_claim" {
+  description = "Audience claim to check for in JWT received from Pub/Sub."
 }
 
-variable "cool_down_period" {
-  default = 600
-}
-
-variable "max_unavailable_fixed" {
-  default = 0
-}
-
-variable "max_surge_fixed" {
-  default = 1
-}
-
-variable "machine_type" {
-  default = "n1-standard-1"
-}
-
-variable "instance_service_account" {
-  default = "ide-backend@ctfhubio.iam.gserviceaccount.com"
-}
-
-variable "app_env" {
-  default = "production"
-}
-
-variable "base_url" {
-  default = "https://ide.ctfhub.io"
-  description = "Base URL"
-}
-
-variable "app_url" {
-  default = "https://ide.ctfhub.io/api"
-  description = "Base URL of backend API."
+variable "pubsub_verification_token" {
+  description = "Token used on /api/status/update API to validate the request is really coming from Pubsub."
 }
 
 variable "app_signing_secret" {
@@ -61,22 +31,14 @@ variable "app_signing_secret" {
   description = "Signing key used by the application."
 }
 
-variable "mongo_db_dsn" {
-  description = "MongoDB DSN link."
+variable "app_port" {
+  default = "3000"
 }
 
-variable "google_cloud_project" {
-  description = "GCP project name"
-}
-
-variable "pubsub_topic_name" {
-  description = "Name of Cloud PubSub topic."
-}
-
-variable "pubsub_verification_token" {
-  description = "Token used on /api/status/update API to validate the request is really coming from Pubsub."
+variable "app_timeout_seconds" {
+  default = 10
 }
 
 variable "app_docker_image_name" {
-  default = "ifaisalalam/ide-backend"
+  default = "ide-api"
 }

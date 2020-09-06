@@ -2,6 +2,8 @@
 
 cd "$(dirname "$0")" || exit
 
+. ./export-env-vars.sh
+
 PWD=$(pwd)
 
 if [ -z "$GCS_BUCKET_NAME" ]; then
@@ -20,8 +22,12 @@ terraform init \
   --backend-config "bucket=$GCS_BUCKET_NAME" \
   --backend-config "prefix=$GCS_BUCKET_PATH"
 
+terraform fmt -check
+
 terraform validate
 
-terraform taint google_compute_instance_template.ide_backend 2> /dev/null
+terraform taint google_cloud_run_service.ide_api 2> /dev/null
 
-terraform apply -auto-approve
+terraform plan -refresh=true -out=tfplan
+
+terraform apply -auto-approve -lock=true tfplan

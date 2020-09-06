@@ -2,6 +2,10 @@
 
 cd "$(dirname "$0")" || exit
 
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+. ./export-env-vars.sh
 
-docker push ifaisalalam/ide-api
+gcloud auth configure-docker
+
+docker tag "$DOCKER_IMAGE_NAME" "gcr.io/$GCP_PROJECT_ID/$DOCKER_IMAGE_NAME"
+
+docker push "gcr.io/$GCP_PROJECT_ID/$DOCKER_IMAGE_NAME"

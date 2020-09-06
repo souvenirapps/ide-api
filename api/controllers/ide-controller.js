@@ -12,15 +12,14 @@ module.exports = {
       const lang = body.lang;
 
       const requestId = await ide.saveRequest({ source, lang, stdin });
-      const baseUrl = process.env.APP_URL || 'http://localhost:3000';
       const signedToken = hashing.generateSignedTokenFromId(requestId);
-      const callbackUrl = `${baseUrl}/status/${requestId}?signature=${signedToken}`;
+      const callbackPath = `/status/${requestId}?signature=${signedToken}`;
 
       return res.status(202).json({
         status: 'success',
         data: {
           requestId,
-          callbackUrl
+          callbackPath
         }
       });
     } catch (err) {

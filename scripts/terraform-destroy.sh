@@ -2,6 +2,8 @@
 
 cd "$(dirname "$0")" || exit
 
+. ./export-env-vars.sh
+
 PWD=$(pwd)
 
 if [ -z "$GCS_BUCKET_NAME" ]; then

@@ -34,7 +34,7 @@ module.exports = {
 
       const ticket = await authClient.verifyIdToken({
         idToken: token,
-        audience: process.env.BASE_URL || 'https://ide.ctfhub.io'
+        audience: process.env.PUBSUB_OAUTH_AUD_CLAIM
       });
       // eslint-disable-next-line no-unused-vars
       const claim = ticket.getPayload();
