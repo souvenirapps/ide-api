@@ -72,10 +72,11 @@ resource "google_cloud_scheduler_job" "warm_ide_api" {
 
   http_target {
     http_method = "GET"
-    uri         = google_cloud_run_service.ide_api.status[0].url
+    uri         = "${google_cloud_run_service.ide_api.status[0].url}/_/ping"
 
     oidc_token {
       service_account_email = var.cloud_scheduler_sa_email
+      audience = google_cloud_run_service.ide_api.status[0].url
     }
   }
 

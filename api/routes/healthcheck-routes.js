@@ -8,5 +8,6 @@ const router = express.Router();
 const controller = require('../controllers');
 
 router.all('/healthcheck', controller.healthcheckController.healthcheck);
+router.all('/ping', controller.healthcheckController.ping);
 
 module.exports = router;
