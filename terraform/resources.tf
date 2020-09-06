@@ -58,10 +58,10 @@ resource "google_cloud_run_service_iam_member" "member" {
 }
 
 resource "google_cloud_scheduler_job" "warm_ide_api" {
-  name             = "warm-ide-api"
-  description      = "Ping IDE API Cloud Run app to prevent cold start."
-  schedule         = "every 1 minutes"
-  time_zone        = "Asia/Calcutta"
+  name        = "warm-ide-api"
+  description = "Ping IDE API Cloud Run app to prevent cold start."
+  schedule    = "every 1 minutes"
+  time_zone   = "Asia/Calcutta"
 
   http_target {
     http_method = "GET"

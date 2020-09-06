@@ -31,7 +31,7 @@ variable "pubsub_verification_token" {
 }
 
 variable "app_signing_secret" {
-  default = "secret"
+  default     = "secret"
   description = "Signing key used by the application."
 }
 
