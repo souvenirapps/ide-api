@@ -17,6 +17,9 @@ module.exports = {
       },
       nodejs8: {
         DEFAULT_TIMEOUT: 5
+      },
+      java8: {
+        DEFAULT_TIMEOUT: 5
       }
     }
   },
