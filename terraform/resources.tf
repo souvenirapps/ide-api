@@ -2,7 +2,7 @@ resource "google_cloud_run_service" "ide_api" {
   provider = google-beta
 
   name     = "ide-api"
-  location = "us-central1"
+  location = "europe-west2"
 
   traffic {
     percent         = 100
@@ -63,7 +63,7 @@ resource "google_cloud_run_service_iam_member" "member" {
 
 resource "google_cloud_scheduler_job" "warm_ide_api" {
   provider = google-beta
-  region   = "us-central1"
+  region   = "europe-west2"
 
   name        = "warm-ide-api"
   description = "Ping IDE API Cloud Run app to prevent cold start."
