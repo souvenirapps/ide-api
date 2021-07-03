@@ -9,6 +9,7 @@ defaults:
     shell: bash
 
 env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   APP_SIGNING_SECRET: ${{ secrets.APP_SIGNING_SECRET }}
   DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
